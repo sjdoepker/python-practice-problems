@@ -1,0 +1,3 @@
+{
+    "python.autoComplete.extraPaths": ["/workspaces/python-practice-problems/problems/test_utils.py"]
+}

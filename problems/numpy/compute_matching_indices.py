@@ -1,3 +1,5 @@
+import test_utils as utils
+
 def compute_matching_indices(x, y):
     """
     Returns a new array consisting of the indices where
@@ -8,10 +10,8 @@ def compute_matching_indices(x, y):
     Returns: a sorted array of the indices where x[i] == y[i]
     Note that the returned array must be one-dimensional! 
     """
-
-    # YOUR CODE HERE
-    # Replace None with an appropriate return value
-    return None
+    
+    return np.array(x==y)
     
 
 #############################################################
@@ -25,7 +25,6 @@ import sys
 import numpy as np
 sys.path.append('../')
 
-import test_utils as utils
 
 def test_compute_matching_indices():
 
