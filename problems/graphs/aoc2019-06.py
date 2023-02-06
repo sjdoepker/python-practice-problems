@@ -19,9 +19,23 @@ def part1(orbits):
 
     Returns an integer
     """
-    ### Replace with your code
-    return None
+    result = 0
+    with open(orbits) as f:
+        for i in f:
+            name, orbiting = i.split(")")
+            result += 1 + to_start(name, orbits)
 
+
+
+    ### Replace with your code
+    return result
+
+
+    def to_start(dest, orbits):
+        if key in orbits:
+            return to_start(orbits[dest], orbits) +1
+        else:
+            return 0
 
 def part2(orbits):
     """

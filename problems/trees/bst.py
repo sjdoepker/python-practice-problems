@@ -22,6 +22,29 @@ class Empty:
     def insert(self, n):
         return Node(n, Empty(), Empty())
 
+    def inorder(self):
+        return []
+
+    def min_item(self):
+        return None
+
+    def max_item(self):
+        return None
+
+    def balance_factor(self):
+        return None
+
+    def balanced_everywhere(self):
+        return True
+
+    def add_to_all(self, n):
+        return Empty()
+
+    def path_to(self, n):
+        return None
+
+    def __str__(self):
+        return " "
 
 class Node:
 
@@ -59,19 +82,66 @@ class Node:
             return self
 
     def inorder(self):
-        result = []
-        result.append(self.value)
-        print(result)
-        if self.left.is_empty() and self.right.is_empty():
-            return result
+        if self.is_empty():
+            return []
         else:
-            if not self.left.is_empty():
-                result.append(self.left.inorder())
-                print(result)
-            if not self.right.is_empty():
-                result.append(self.right.inorder())
-                print(result)
-            return result
+            return self.left.inorder() + [self.value] + self.right.inorder()
+
+    def min_item(self):
+        if self.is_empty():
+            return None
+        else:
+            if self.left.is_empty():
+                return self.value
+            else:
+                return self.left.min_item()
+
+    def max_item(self):
+        if self.is_empty():
+            return None
+        else:
+            if self.right.is_empty():
+                return self.value
+            else:
+                return self.right.min_item()
+
+    def balance_factor(self):
+        if self.is_empty():
+            return None
+        else:
+            return (self.right.height() - self.left.height())
+
+    def balanced_everywhere(self):
+        if self.is_empty():
+            return True
+        else:
+            return abs(self.balance_factor()) <= 1
+        
+    def add_to_all(self, n):
+        if self.is_empty():
+            return Empty()
+        else:
+            if self.is_leaf():
+                return Node(self.value + n, Empty(), Empty())
+            else:
+                return Empty().insert(Node(self.value+n, self.left.add_to_all(n), self.right.add_to_all(n)))
+
+    def path_to(self, n):
+        if self.value == n:
+            print('found')
+            return [self.value]
+        elif n < self.value:
+            print('less')
+            return [self.value] + self.left.path_to(n)
+        elif n > self.value:
+            print('more')
+            return [self.value] + self.right.path_to(n)
+        else: 
+            return None
+
+    def __str__(self):
+        return str(self.left) + "<-" + str(self.value) + "->" + str(self.right)
+
 
 
 if __name__ == "__main__":

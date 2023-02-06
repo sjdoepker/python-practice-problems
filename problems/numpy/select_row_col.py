@@ -9,9 +9,14 @@ def select_row_col(x, row_idx=None, col_idx=None):
         specified row_idx and col_idx
     """
 
-    # YOUR CODE HERE
-    # Replace None with an appropriate return value
-    return None
+    if not row_idx and not col_idx:
+        return x[:, :]
+    elif not row_idx:
+        return x[:, col_idx]
+    elif not col_idx:
+        return x[row_idx, :]
+    else:
+        return x[row_idx, col_idx]
 
 
 #############################################################
