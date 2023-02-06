@@ -58,6 +58,21 @@ class Node:
         else:
             return self
 
+    def inorder(self):
+        result = []
+        result.append(self.value)
+        print(result)
+        if self.left.is_empty() and self.right.is_empty():
+            return result
+        else:
+            if not self.left.is_empty():
+                result.append(self.left.inorder())
+                print(result)
+            if not self.right.is_empty():
+                result.append(self.right.inorder())
+                print(result)
+            return result
+
 
 if __name__ == "__main__":
     bst = Empty().insert(42).insert(10).insert(15).insert(63)
