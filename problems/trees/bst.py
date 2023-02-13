@@ -127,17 +127,14 @@ class Node:
                 return Empty().insert(Node(self.value+n, self.left.add_to_all(n), self.right.add_to_all(n)))
 
     def path_to(self, n):
-        if self.value == n:
-            print('found')
-            return [self.value]
-        elif n < self.value:
-            print('less')
-            return [self.value] + self.left.path_to(n)
-        elif n > self.value:
-            print('more')
-            return [self.value] + self.right.path_to(n)
-        else: 
-            return None
+        if self.contains(n):
+            if self.value == n:
+                return [self.value]
+            elif n < self.value:
+                return [self.value] + self.left.path_to(n)
+            elif n > self.value:
+                return [self.value] + self.right.path_to(n)
+        return None
 
     def __str__(self):
         return str(self.left) + "<-" + str(self.value) + "->" + str(self.right)

@@ -8,6 +8,11 @@ import sys
 import os
 import re
 
+class SpaceObject:
+    def __init__(self, name, parent):
+        self.name = name
+        self.parent = parent
+
 
 def part1(orbits):
     """
@@ -19,23 +24,32 @@ def part1(orbits):
 
     Returns an integer
     """
-    result = 0
+    sum = 0
+    for planet in orbits:
+        sum += count_orbits(planet)
+    return sum
+
+"""    result = 0
     with open(orbits) as f:
         for i in f:
             name, orbiting = i.split(")")
             result += 1 + to_start(name, orbits)
-
-
-
-    ### Replace with your code
-    return result
-
+        return result
 
     def to_start(dest, orbits):
         if key in orbits:
             return to_start(orbits[dest], orbits) +1
         else:
             return 0
+"""
+
+def count_orbits(planet):
+    if planet.parent is None:
+        return 0
+    else:
+        return 1 + count_orbits(planet.parent)
+
+    
 
 def part2(orbits):
     """

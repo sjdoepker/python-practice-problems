@@ -9,11 +9,11 @@ def select_row_col(x, row_idx=None, col_idx=None):
         specified row_idx and col_idx
     """
 
-    if not row_idx and not col_idx:
+    if row_idx is None and col_idx is None:
         return x[:, :]
-    elif not row_idx:
+    elif row_idx is None:
         return x[:, col_idx]
-    elif not col_idx:
+    elif col_idx is None:
         return x[row_idx, :]
     else:
         return x[row_idx, col_idx]

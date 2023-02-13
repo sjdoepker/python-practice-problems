@@ -10,8 +10,7 @@ def compute_matching_indices(x, y):
     Returns: a sorted array of the indices where x[i] == y[i]
     Note that the returned array must be one-dimensional! 
     """
-    mask = x==y
-    return np.array(mask).nonzero()[0]
+    return np.array(x==y).nonzero()[0]
 
 #############################################################
 ###                                                       ###
